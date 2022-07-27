@@ -1,5 +1,15 @@
-import { Controller, Get, HttpCode } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  HttpCode,
+  Post,
+  UseGuards,
+  Request,
+} from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { AppService } from './app.service';
+import { JwtAuthGuard } from './auth/jwt-auth.guard';
+import { LocalAuthGuard } from './auth/local-auth.guard';
 
 @Controller()
 export class AppController {
@@ -17,12 +27,3 @@ export class AppController {
     return this.appService.getHello();
   }
 }
-
-// @GetMapping("/health")
-// public String healthCheck() throws IOException {
-//     return "Looks OK!";
-// }
-// @GetMapping("/")
-// public String health() throws IOException {
-//     return "Looks OK!";
-// }
